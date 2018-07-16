@@ -1,0 +1,8 @@
+{
+  "env": {
+    "MongoURL": "mongodb://localhost:27017",
+    "JWT_KEY": "Key@123$",
+    "PORT": "8888",
+    "JWT_EXPIRESIN": "1h"
+  }
+}
