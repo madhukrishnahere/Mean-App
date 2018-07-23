@@ -1,8 +1,8 @@
 {
   "env": {
-    "MongoURL": "mongodb://localhost:27017",
+    "MongoURL": "mongodb://localhost:27017/meanapp",
     "JWT_KEY": "Key@123$",
-    "PORT": "8888",
+    "PORT": "3000",
     "JWT_EXPIRESIN": "1h"
   }
 }

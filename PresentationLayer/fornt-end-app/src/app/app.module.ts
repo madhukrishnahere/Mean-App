@@ -8,12 +8,23 @@ import { MaterialModule } from "./material/material.module";
 import { routing } from "./routes/app.routing.module";
 import { RouterModule } from "../../node_modules/@angular/router";
 import { LoginComponent } from "./login/login/login.component";
-import { UserComponent } from "./user/user/user.component";
+import { HttpClientModule } from "@angular/common/http";
+import { RegistrationService } from "../app/registration/registration.service";
+import { ConstantsService } from "../app/constants.service";
+import { RegistrationModule } from "./registration/registration.module";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, LoginModule, UserModule, MaterialModule, routing],
-  providers: [],
+  imports: [
+    BrowserModule,
+    LoginModule,
+    UserModule,
+    MaterialModule,
+    routing,
+    HttpClientModule,
+    RegistrationModule
+  ],
+  providers: [ConstantsService, RegistrationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
