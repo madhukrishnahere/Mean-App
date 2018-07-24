@@ -7,10 +7,10 @@ import { Observable } from "../../../node_modules/rxjs";
 @Injectable({
   providedIn: "root"
 })
-export class RegistrationService {
+export class LoginService {
   constructor(private http: HttpClient, private constants: ConstantsService) {}
 
-  registerUser(user: User): Observable<User> {
-    return this.http.post<User>(this.constants.registrationUrl, user);
+  singinUser(user: User): Observable<User> {
+    return this.http.post<User>(this.constants.loginUrl, user);
   }
 }

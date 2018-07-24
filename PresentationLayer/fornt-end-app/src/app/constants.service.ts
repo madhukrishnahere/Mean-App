@@ -7,4 +7,5 @@ export class ConstantsService {
   constructor() {}
   public baseUrl = "http://localhost:3000";
   public registrationUrl = this.baseUrl + "/user/signup";
+  public loginUrl = this.baseUrl + "/user/login";
 }

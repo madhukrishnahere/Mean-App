@@ -1,15 +1,56 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { User } from "../../models/user";
+import { LoginService } from "../login.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-
-  constructor() { }
+  loginForm: FormGroup;
+  submitted = false;
+  constructor(
+    private formBuilder: FormBuilder,
+    private loginService: LoginService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required, Validators.minLength(6)]]
+    });
+  }
+  // convenience getter for easy access to form fields
+  get f() {
+    return this.loginForm.controls;
   }
 
+  signinUser() {
+    // console.log("registerUser");
+    this.submitted = true;
+    const formData = this.loginForm.value;
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
+    }
+    const user = new User();
+    user.password = formData.password;
+    user.email = formData.email;
+
+    this.loginService.singinUser(user).subscribe(
+      data => {
+        console.log("User login is successful ", data);
+        alert("login");
+        // this.router.navigate(["/signin"]);
+      },
+      error => {
+        console.log(error.error.message);
+        alert(error.error.message);
+      }
+    );
+  }
 }
