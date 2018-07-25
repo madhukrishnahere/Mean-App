@@ -1,0 +1,10 @@
+Useful Angular-cli commands:
+
+->To create module
+>> ng generate module [module-name] --spec false
+
+->To create component
+>> ng generate component [component-name] --spec false
+
+->To create service
+>> ng generate service  [service-name] --spec false

@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 exports.user_singnup = (req, res, next) => {
   User.find({ email: req.body.email })
     .then(result => {
-      console.log(result);
+      //console.log(result);
       if (result.length) {
         res.status(422).json({
           message: "email already exists"
@@ -44,6 +45,7 @@ exports.user_singnup = (req, res, next) => {
 };
 
 exports.user_login = (req, res, next) => {
+  //console.log(req.body);
   User.find({ email: req.body.email })
     .then(result => {
       if (result.length) {

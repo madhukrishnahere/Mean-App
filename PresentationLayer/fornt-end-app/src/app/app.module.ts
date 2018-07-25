@@ -11,6 +11,8 @@ import { ConstantsService } from "../app/constants.service";
 import { RegistrationModule } from "./registration/registration.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { EqualValidator } from "./equal-validator.directive";
+import { ProfilesModule } from "./profiles/profiles.module";
+import { AuthGuardService } from "./auth-guard.service";
 
 @NgModule({
   declarations: [AppComponent, EqualValidator],
@@ -23,10 +25,11 @@ import { EqualValidator } from "./equal-validator.directive";
     MaterialModule,
     routing,
     HttpClientModule,
-    RegistrationModule
+    RegistrationModule,
+    ProfilesModule
   ],
-  providers: [ConstantsService, RegistrationService],
+  providers: [ConstantsService, RegistrationService, AuthGuardService],
   bootstrap: [AppComponent],
-  exports: [FormsModule, ReactiveFormsModule, EqualValidator]
+  exports: [FormsModule, ReactiveFormsModule, EqualValidator, EqualValidator]
 })
 export class AppModule {}

@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from "../../models/user";
 import { LoginService } from "../login.service";
+import { CookiescontainerService } from "../../cookiescontainer.service";
+import { ConstantsService } from "../../constants.service";
 
 @Component({
   selector: "app-login",
@@ -15,13 +17,15 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private loginService: LoginService,
-    private router: Router
+    private cookiescontainerService: CookiescontainerService,
+    private router: Router,
+    private constantsService: ConstantsService
   ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required, Validators.minLength(6)]]
+      password: ["", [Validators.required]]
     });
   }
   // convenience getter for easy access to form fields
@@ -43,9 +47,15 @@ export class LoginComponent implements OnInit {
 
     this.loginService.singinUser(user).subscribe(
       data => {
+        // Ref: https://alligator.io/js/introduction-localstorage-sessionstorage/
         console.log("User login is successful ", data);
-        alert("login");
-        // this.router.navigate(["/signin"]);
+
+        this.cookiescontainerService.setCookie(
+          this.constantsService.loginCookieName,
+          data.token,
+          this.constantsService.loginCookieExpiresInDays
+        );
+        this.router.navigate(["/profiles"]);
       },
       error => {
         console.log(error.error.message);

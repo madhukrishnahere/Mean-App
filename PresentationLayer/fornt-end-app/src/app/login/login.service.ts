@@ -10,7 +10,7 @@ import { Observable } from "../../../node_modules/rxjs";
 export class LoginService {
   constructor(private http: HttpClient, private constants: ConstantsService) {}
 
-  singinUser(user: User): Observable<User> {
-    return this.http.post<User>(this.constants.loginUrl, user);
+  singinUser(user: User): Observable<any> {
+    return this.http.post<any>(this.constants.loginUrl, user);
   }
 }

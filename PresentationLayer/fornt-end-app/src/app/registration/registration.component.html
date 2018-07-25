@@ -35,7 +35,7 @@
     <div class="form-group">
       <label>Password</label>
       <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-        app-validateEqual="repassword" reverse="true" />
+        appValidateEqual="repassword" reverse="true" />
       <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
         <div *ngIf="f.password.errors.required">Password is required</div>
         <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
@@ -44,29 +44,27 @@
 
     <div class="form-group">
       <label>Confirm password</label>
-      <input type="password" formControlName="repassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.repassword.errors }"
-        app-validateEqual="password" reverse="true" />
+      <input type="password" formControlName="repassword" class="form-control" appValidateEqual="password" [ngClass]="{ 'is-invalid': submitted && f.repassword.errors }"
+        appValidateEqual="password" reverse="true" />
       <div *ngIf="submitted && f.repassword.errors" class="invalid-feedback">
         <div *ngIf="f.repassword.errors.required">Confirm password is required</div>
         <div *ngIf="f.repassword.errors.minlength">Confirm password must be at least 6 characters</div>
 
       </div>
-      <div *ngIf="submitted && f.repassword.errors" class="invalid-feedback">
-        <small [hidden]="f.repassword.valid || (f.repassword.pristine && !f.submitted)">
-          Password mismatch
-        </small>
+      <div *ngIf="submitted && f.repassword.errors?.notEqual" class="invalid-feedback">
+        Password mismatch
       </div>
     </div>
     <div class="form-group">
       <button [disabled]="loading" class="btn btn-primary">Register</button>
     </div>
 
-    <!-- <label>
+    <!-- <label>d
     <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
   </label>
 
   <p>By creating an account you agree to our
-    <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p> -->
+    <a href="#" style="color:dodgerblue">Terdms & Privacy</a>.</p> -->
 
     <!-- <div class="clearfix">
       <button type="button" class="signupbtn" (click)="registerUser()">Sign Up</button>
