@@ -10,4 +10,5 @@ export class ConstantsService {
   public baseUrl = "http://localhost:3000";
   public registrationUrl = this.baseUrl + "/user/signup";
   public loginUrl = this.baseUrl + "/user/login";
+  public verifyToken = this.baseUrl + "/user/verifytoken";
 }

@@ -12,6 +12,8 @@ router.post("/signup", userController.user_singnup);
 
 router.post("/login", userController.user_login);
 
+router.post("/verifytoken", userController.token_verify);
+
 router.delete("/:userId", authCheck, userController.user_delete);
 
 router.get("/:userId", authCheck, userController.user_by_id);

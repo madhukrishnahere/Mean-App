@@ -127,3 +127,23 @@ exports.user_by_id = (req, res, next) => {
       });
     });
 };
+
+exports.token_verify = (req, res, next) => {
+  try {
+    console.log("entered");
+    console.log(req);
+    const token = req.token;
+    console.log(token);
+    const decoded = jwt.verify(token, process.env.JWT_EXPIRESIN);
+    console.log(decoded);
+    req.memberData = decoded;
+    res.status(200).json({
+      isvalidtoken: true,
+      user: decoded
+    });
+  } catch (err) {
+    return res.status(401).json({
+      message: "Auth failed"
+    });
+  }
+};
