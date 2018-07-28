@@ -49,11 +49,12 @@
       <div *ngIf="submitted && f.repassword.errors" class="invalid-feedback">
         <div *ngIf="f.repassword.errors.required">Confirm password is required</div>
         <div *ngIf="f.repassword.errors.minlength">Confirm password must be at least 6 characters</div>
-
+        <div class="alert alert-danger" *ngIf="!f.repassword.errors?.MutchPassword">Password not match</div>
       </div>
-      <div *ngIf="submitted && f.repassword.errors?.notEqual" class="invalid-feedback">
+      <!-- <div *ngIf="submitted && f.repassword.errors?.notEqual" class="invalid-feedback">
         Password mismatch
-      </div>
+      </div> -->
+
     </div>
     <div class="form-group">
       <button [disabled]="loading" class="btn btn-primary">Register</button>

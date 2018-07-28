@@ -48,6 +48,7 @@ exports.user_login = (req, res, next) => {
   //console.log(req.body);
   User.find({ email: req.body.email })
     .then(result => {
+      console.log(result[0].password)
       if (result.length) {
         bcrypt.compare(req.body.password, result[0].password, (err, resp) => {
           if (err) {

@@ -8,6 +8,7 @@ import {
   Validators,
   AbstractControl
 } from "@angular/forms";
+import { PasswordValidation } from "src/app/directives/passwordValidation";
 
 @Component({
   selector: "app-registration",
@@ -22,7 +23,7 @@ export class RegistrationComponent implements OnInit {
     private registrationService: RegistrationService,
     private formBuilder: FormBuilder,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -31,7 +32,10 @@ export class RegistrationComponent implements OnInit {
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required, Validators.minLength(6)]],
       repassword: ["", [Validators.required, Validators.minLength(6)]]
-    });
+    },
+      {
+        validator: PasswordValidation.MatchPassword // your validation method
+      });
   }
   // convenience getter for easy access to form fields
   get f() {
