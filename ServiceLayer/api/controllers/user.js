@@ -48,7 +48,7 @@ exports.user_login = (req, res, next) => {
   //console.log(req.body);
   User.find({ email: req.body.email })
     .then(result => {
-      console.log(result[0].password)
+      console.log(result[0].password);
       if (result.length) {
         bcrypt.compare(req.body.password, result[0].password, (err, resp) => {
           if (err) {
@@ -62,7 +62,7 @@ exports.user_login = (req, res, next) => {
                 },
                 process.env.JWT_KEY,
                 {
-                  expiresIn: process.env.JWT_EXPIRESIN
+                  expiresIn: "1h" //process.env.JWT_EXPIRESIN
                 }
               );
               return res.status(200).json({
@@ -133,9 +133,10 @@ exports.token_verify = (req, res, next) => {
   try {
     console.log("entered");
     console.log(req);
-    const token = req.token;
+    const token = req.body.token;
     console.log(token);
-    const decoded = jwt.verify(token, process.env.JWT_EXPIRESIN);
+
+    const decoded = jwt.verify(token, "Key@123$"); //process.env.JWT_EXPIRESIN);
     console.log(decoded);
     req.memberData = decoded;
     res.status(200).json({

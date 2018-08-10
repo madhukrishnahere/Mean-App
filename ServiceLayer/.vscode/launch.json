@@ -7,8 +7,8 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Example.TaskContext Launch",
-      "program": "${workspaceFolder}/server.js"
+      "name": "Debug Launch",
+      "program": "${workspaceFolder}/app.js"
     }
   ]
 }

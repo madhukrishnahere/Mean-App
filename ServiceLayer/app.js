@@ -6,8 +6,15 @@ const userRoutes = require("./api/routes/user");
 const emailRoutes = require("./api/routes/email");
 const mongoose = require("mongoose");
 
-const mongoURL = process.env.MongoURL;
-mongoose.connect(mongoURL);
+const mongoURL = "mongodb://localhost:27017/meanapp"; //process.env.MongoURL;
+mongoose
+  .connect(mongoURL)
+  .then(connection => {
+    console.log("Connected to MongoDB");
+  })
+  .catch(error => {
+    console.log(error.message);
+  });
 
 app.use((req, resp, next) => {
   resp.header("Access-Control-Allow-Origin", "*");
@@ -31,5 +38,6 @@ app.use(bodyParser.json());
 
 app.use("/user", userRoutes);
 app.use("/test", emailRoutes);
-
 module.exports = app;
+
+//app.listen(3000, () => console.log(`Server started on port`));

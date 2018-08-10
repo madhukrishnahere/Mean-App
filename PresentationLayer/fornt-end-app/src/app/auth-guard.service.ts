@@ -20,9 +20,15 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
       const token = this.cookiescontainerService.getCookie(
         this.constantsService.loginCookieName
       );
-      this.tokenVerifyService.isAuthorized(token).subscribe(x => {
-        res(x.isAuthorized);
-      });
+      this.tokenVerifyService.isAuthorized(token).subscribe(
+        x => {
+          res(x.isvalidtoken);
+        },
+        error => {
+          console.log(error.error.message);
+          alert(error.error.message);
+        }
+      );
     });
     // : boolean {
     // const token = this.cookiescontainerService.getCookie(

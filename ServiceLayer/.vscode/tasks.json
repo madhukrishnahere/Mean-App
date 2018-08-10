@@ -4,9 +4,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "debugger_taskcontext",
+      "label": "debug_express",
       "type": "npm",
-      "script": "build:example:taskcontext",
+      "script": "start",
       "problemMatcher": []
     }
   ]

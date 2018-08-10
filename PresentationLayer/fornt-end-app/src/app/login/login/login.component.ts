@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     private cookiescontainerService: CookiescontainerService,
     private router: Router,
     private constantsService: ConstantsService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
